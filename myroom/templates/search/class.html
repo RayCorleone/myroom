@@ -59,7 +59,8 @@
                 <th>校区</th>
                 <th>楼名</th>
                 <th>教室号</th>
-                <th>时间</th>
+                <th>星期</th>
+                <th>时间段</th>
             </tr>
             </thead>
             {% for info in class_info %}
@@ -71,6 +72,7 @@
                     <td>{{ info.room.building.location }}</td>
                     <td>{{ info.room.building.name }}</td>
                     <td>{{ info.room.number }}</td>
+                    <td>{{ info.weekday }}</td>
                     <td>{{ info.start_time }}-{{ info.finish_time }}</td>
                 </tr>
             {% endfor %}

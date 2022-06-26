@@ -105,7 +105,7 @@ def register_commands(app):
             click.echo('@Status: Available')
         if wechat:
             click.echo('@Wechat: RayHuC')
-        click.echo('@Page: https://github.com/RayCorleone')    
+        click.echo('@Page: https://github.com/RayCorleone')
 
     # 初始化数据库指令
     @app.cli.command()

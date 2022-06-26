@@ -163,26 +163,24 @@ def search_all():
                     b_weekday = 0
 
                 for room in room_result:
-                    print(type(room.events))
-                    print(type(room_result))
                     event1 = room.events.filter(
                         Event.date == t_date,     #当天
                         Event.passed == True,   #已经通过
-                        or_(and_(#开始时间在活动之间
-                        Event.start_time < s_time,    
-                        Event.finish_time > s_time),
-                            and_(#结束时间在活动之间
-                        Event.start_time < e_time,
-                        Event.finish_time > e_time))
+                        or_(and_(#开始时间在查询之间
+                        Event.start_time > s_time,    
+                        Event.start_time < e_time),
+                            and_(#结束时间在查询之间
+                        Event.finish_time > s_time,
+                        Event.finish_time < e_time))
                         ).first()
                     open_course1 = room.open_courses.filter(
                         OpenCourse.weekday == b_weekday,    #当日
-                        or_(and_(#开始时间在课程之间
-                        OpenCourse.start_time < s_time,    
-                        OpenCourse.finish_time > s_time),
-                            and_(#结束时间在课程之间
-                        OpenCourse.start_time < e_time,
-                        OpenCourse.finish_time > e_time))
+                        or_(and_(#开始时间在查询之间
+                        OpenCourse.start_time > s_time,    
+                        OpenCourse.start_time < e_time),
+                            and_(#结束时间在查询之间
+                        OpenCourse.finish_time > s_time,
+                        OpenCourse.finish_time < e_time))
                         ).first()
                     
                     if event1 is not None:

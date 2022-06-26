@@ -168,10 +168,11 @@ class Event(db.Model):
     user = db.relationship('User', back_populates='events')
 
     def approve(self, comment="None"):
-        self.estimated = True
-        self.passed = True
-        self.comment = comment
-        db.session.commit()
+        if self.is_avaiable:
+            self.estimated = True
+            self.passed = True
+            self.comment = comment
+            db.session.commit()
 
     def reject(self, comment="None"):
         self.estimated = True
